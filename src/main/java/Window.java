@@ -92,15 +92,17 @@ public class Window extends JButton {
         quitGame.setForeground(Color.BLACK);
         quitGame.setFont(defaultFont);
 
-        GameLabel square1 = new GameLabel(1,this);
-        GameLabel square2 = new GameLabel(2,this);
-        GameLabel square3 = new GameLabel(3,this);
-        GameLabel square4 = new GameLabel(4,this);
-        GameLabel square5 = new GameLabel(5,this);
-        GameLabel square6 = new GameLabel(6,this);
-        GameLabel square7 = new GameLabel(7,this);
-        GameLabel square8 = new GameLabel(8,this);
-        GameLabel square9 = new GameLabel(9,this);
+        WinCondition condition = new WinCondition();
+
+        GameLabel square1 = new GameLabel(1,this, condition);
+        GameLabel square2 = new GameLabel(2,this, condition);
+        GameLabel square3 = new GameLabel(3,this, condition);
+        GameLabel square4 = new GameLabel(4,this, condition);
+        GameLabel square5 = new GameLabel(5,this, condition);
+        GameLabel square6 = new GameLabel(6,this, condition);
+        GameLabel square7 = new GameLabel(7,this, condition);
+        GameLabel square8 = new GameLabel(8,this, condition);
+        GameLabel square9 = new GameLabel(9,this, condition);
 
         square1.getLabel().setBounds(263-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
         square2.getLabel().setBounds(263-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
@@ -113,15 +115,17 @@ public class Window extends JButton {
         square9.getLabel().setBounds(128-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
 
         gameLabels = new ArrayList<>();
-        gameLabels.add(square1);
-        gameLabels.add(square2);
-        gameLabels.add(square3);
-        gameLabels.add(square4);
-        gameLabels.add(square5);
-        gameLabels.add(square6);
         gameLabels.add(square7);
+        gameLabels.add(square2);
+        gameLabels.add(square4);
         gameLabels.add(square8);
+        gameLabels.add(square1);
+        gameLabels.add(square5);
         gameLabels.add(square9);
+        gameLabels.add(square3);
+        gameLabels.add(square6);
+
+        condition.setList(gameLabels);
 
         gameWindow.add(player1Name);
         gameWindow.add(player2Name);
@@ -129,6 +133,9 @@ public class Window extends JButton {
         gameWindow.add(player2Score);
         gameWindow.add(resetGame);
         gameWindow.add(quitGame);
+
+        Player player1 = new Player();
+        Player player2 = new Player();
 
         for (GameLabel l : gameLabels) {
             gameWindow.add(l.getLabel());
@@ -149,11 +156,6 @@ public class Window extends JButton {
     // For resetter class
     public JButton getResetGame() {
         return resetGame;
-    }
-
-    // For resetter class and win condition
-    public ArrayList<GameLabel> getGameLabels() {
-        return gameLabels;
     }
 
     public int getCurrentPlayer() {

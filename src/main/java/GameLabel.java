@@ -17,32 +17,28 @@ public class GameLabel {
     ImageIcon cross = new ImageIcon("bin/cross.png"); // importera x bild
 
     int labelValue = 0;
-    int position;
     JLabel label = new JLabel();
     int i;
 
     // There should be a function to update win condition
-    public GameLabel(int position, Window window) {
+    public GameLabel(int position, Window window, WinCondition winCondition) {
 
-        this.position = position;
+
         label.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 int player = window.getCurrentPlayer();
-                System.out.println(labelValue);
-                System.out.println(player);
                 if (labelValue == 0) {
                     if (player == 1) {
                         labelValue = 1;
-                        System.out.println("cross");
                         label.setIcon(cross);
                     } else if (player == 2) {
-                        System.out.println("circle");
                         labelValue = 2;
                         label.setIcon(ring);
                     }
                 window.alternatePlayer();
+                winCondition.checkGameWon(1, 2);
                 } // else dont do anything
             }
 
@@ -67,11 +63,6 @@ public class GameLabel {
     // For win condition
     public int getLabelValue() {
         return labelValue;
-    }
-
-    // For win condition
-    public int getPosition()   {
-        return position;
     }
 
     public JLabel getLabel() {
