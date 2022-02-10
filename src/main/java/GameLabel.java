@@ -9,37 +9,33 @@ import java.awt.event.MouseListener;
      * 0 is empty.
      * @author Oscar
      */
+
 public class GameLabel {
 
-
-
-    ImageIcon ring = new ImageIcon("bin/ring.gif"); // importera o bild
-    ImageIcon cross = new ImageIcon("bin/cross.png"); // importera x bild
+    ImageIcon ring = new ImageIcon("bin/ring.gif");
+    ImageIcon cross = new ImageIcon("bin/cross.png");
 
     int labelValue = 0;
     JLabel label = new JLabel();
-    int i;
+    Window window;
+    WinCondition winCondition;
 
-    // There should be a function to update win condition
+        /**
+         * Adds mouseListnener to labels and calls for select() method
+         * @param position sets position on board
+         * @param window takes in GUI for board layout
+         * @param winCondition updates win condition
+         *
+         */
     public GameLabel(int position, Window window, WinCondition winCondition) {
-
+        this.window = window;
+        this.winCondition = winCondition;
 
         label.addMouseListener(new MouseListener() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int player = window.getCurrentPlayer();
-                if (labelValue == 0) {
-                    if (player == 1) {
-                        labelValue = 1;
-                        label.setIcon(cross);
-                    } else if (player == 2) {
-                        labelValue = 2;
-                        label.setIcon(ring);
-                    }
-                window.alternatePlayer();
-                winCondition.checkGameWon(1, 2);
-                } // else dont do anything
+                select();
             }
 
             @Override
@@ -60,11 +56,35 @@ public class GameLabel {
         });
     }
 
-    // For win condition
+
+        /**
+         * Checks current player turn and sets the selected postition and adds players icon on that postition
+         */
+    public void select() {
+        int player = window.getCurrentPlayer();
+        if (labelValue == 0) {
+            if (player == 1) {
+                labelValue = 1;
+                label.setIcon(cross);
+            } else if (player == 2) {
+                labelValue = 2;
+                label.setIcon(ring);
+            }
+            window.alternatePlayer();
+            winCondition.checkGameWon(1, 2);
+        } // else dont do anything
+    }
+
+        /**
+         * @return labelValue to WinCondtition class
+         */
     public int getLabelValue() {
         return labelValue;
     }
 
+        /**
+         * @return chosen player move to WinCondition class
+         */
     public JLabel getLabel() {
         return label;
     }
