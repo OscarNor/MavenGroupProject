@@ -1,9 +1,10 @@
 import java.util.List;
-public class WinCondition {
-
     /**
     * Checks if a player has won the game. If the board is full, it's a tie. Calls for a reset.
+     * @author Anton
     */
+public class WinCondition {
+
 
     private static boolean check3PositionsIntList(int player, int[] list, int a, int b, int c){
         return list[a] == player && list[b] == player && list[c] == player;

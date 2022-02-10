@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Window extends JButton {
-
     /**
      * The window for the game. Here is where all the visuals are.
-     * Luca
+     * @author Luca
      */
+public class Window extends JButton {
+
 
     // 1
     JFrame gameWindow = new JFrame();
