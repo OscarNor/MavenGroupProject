@@ -11,48 +11,68 @@ public class GameLabel {
      */
 
 
-    ImageIcon ring = new ImageIcon("bin/o.png"); // importera o bild
-    ImageIcon cross = new ImageIcon("bin/xx.png"); // importera x bild
-    ImageIcon empty = new ImageIcon("bin/white.jpg");
+    ImageIcon ring = new ImageIcon("bin/ring.gif"); // importera o bild
+    ImageIcon cross = new ImageIcon("bin/cross.png"); // importera x bild
 
-    JLabel[] board = new JLabel[9];
+    int labelValue = 0;
+    int position;
+    JLabel label = new JLabel();
     int i;
-    public GameLabel() {
 
-        for(i = 0; i < 9; i++) {
+    // There should be a function to update win condition
+    public GameLabel(int position, Window window) {
 
-                board[i] = new JLabel(empty);
-                board[i].addMouseListener(new MouseListener() {
-                    int id = i;
-                    boolean isEmpty = true;
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        if (isEmpty) {
-                            // GetPlayer ID int
-                            int player = 1;
-                            if (player == 1) {
-                                board[id].setIcon(ring);
-                            } else {
-                                board[id].setIcon(cross);
-                            }
-                            isEmpty = false;
-                        } // else Cant click here messege
+        this.position = position;
+        label.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int player = window.getCurrentPlayer();
+                System.out.println(labelValue);
+                System.out.println(player);
+                if (labelValue == 0) {
+                    if (player == 1) {
+                        labelValue = 1;
+                        System.out.println("cross");
+                        label.setIcon(cross);
+                    } else if (player == 2) {
+                        System.out.println("circle");
+                        labelValue = 2;
+                        label.setIcon(ring);
                     }
-
-                    @Override
-                    public void mousePressed(MouseEvent e) { }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) { }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) { }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) { }
-                });
+                window.alternatePlayer();
+                } // else dont do anything
             }
 
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
+    // For win condition
+    public int getLabelValue() {
+        return labelValue;
+    }
+
+    // For win condition
+    public int getPosition()   {
+        return position;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
 }

@@ -1,9 +1,12 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
-public class Window {
+public class Window extends JButton {
 
     /**
      * The window for the game. Here is where all the visuals are.
@@ -32,10 +35,22 @@ public class Window {
     final int OFFSET = 50;
     final int DEF_SIZE = 100;
 
+    public void alternatePlayer(){
+    if (currentPlayer == 1) {
+        currentPlayer = 2;
+    }
+    else{
+        currentPlayer = 1;
+    }
+    }
+
+    private ArrayList<GameLabel> gameLabels;
     public Window(){
 
         // Window size is 540x580;
-        gameWindow.setVisible(true);
+        gameWindow.setUndecorated(true);
+        gameWindow.getRootPane().setWindowDecorationStyle(JRootPane.INFORMATION_DIALOG);
+
         gameWindow.setResizable(false);
         gameWindow.setLayout(null);
         gameWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -77,27 +92,36 @@ public class Window {
         quitGame.setForeground(Color.BLACK);
         quitGame.setFont(defaultFont);
 
-        JLabel t1 = new JLabel(t);
-        JLabel t2 = new JLabel(t);
-        JLabel t3 = new JLabel(t);
-        JLabel t4 = new JLabel(t);
-        JLabel t5 = new JLabel(t);
-        JLabel t6 = new JLabel(t);
-        JLabel t7 = new JLabel(t);
-        JLabel t8 = new JLabel(t);
-        JLabel t9 = new JLabel(t);
+        GameLabel square1 = new GameLabel(1,this);
+        GameLabel square2 = new GameLabel(2,this);
+        GameLabel square3 = new GameLabel(3,this);
+        GameLabel square4 = new GameLabel(4,this);
+        GameLabel square5 = new GameLabel(5,this);
+        GameLabel square6 = new GameLabel(6,this);
+        GameLabel square7 = new GameLabel(7,this);
+        GameLabel square8 = new GameLabel(8,this);
+        GameLabel square9 = new GameLabel(9,this);
 
-        t1.setBounds(263-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
-        t2.setBounds(263-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
-        t3.setBounds(263-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
-        t4.setBounds(396-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
-        t5.setBounds(396-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
-        t6.setBounds(396-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
-        t7.setBounds(128-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
-        t8.setBounds(128-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
-        t9.setBounds(128-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
-        //GameLabel square1 = new GameLabel();
-        // square1.getLabel().setBounds(263-OFFSET,300-OFFSET,100,100);
+        square1.getLabel().setBounds(263-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
+        square2.getLabel().setBounds(263-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
+        square3.getLabel().setBounds(263-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
+        square4.getLabel().setBounds(396-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
+        square5.getLabel().setBounds(396-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
+        square6.getLabel().setBounds(396-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
+        square7.getLabel().setBounds(128-OFFSET,163-OFFSET,DEF_SIZE,DEF_SIZE);
+        square8.getLabel().setBounds(128-OFFSET,300-OFFSET,DEF_SIZE,DEF_SIZE);
+        square9.getLabel().setBounds(128-OFFSET,437-OFFSET,DEF_SIZE,DEF_SIZE);
+
+        gameLabels = new ArrayList<>();
+        gameLabels.add(square1);
+        gameLabels.add(square2);
+        gameLabels.add(square3);
+        gameLabels.add(square4);
+        gameLabels.add(square5);
+        gameLabels.add(square6);
+        gameLabels.add(square7);
+        gameLabels.add(square8);
+        gameLabels.add(square9);
 
         gameWindow.add(player1Name);
         gameWindow.add(player2Name);
@@ -106,16 +130,30 @@ public class Window {
         gameWindow.add(resetGame);
         gameWindow.add(quitGame);
 
-        gameWindow.add(t1);
-        gameWindow.add(t2);
-        gameWindow.add(t3);
-        gameWindow.add(t4);
-        gameWindow.add(t5);
-        gameWindow.add(t6);
-        gameWindow.add(t7);
-        gameWindow.add(t8);
-        gameWindow.add(t9);
-        // gameWindow.add(square1.getLabel());
+        for (GameLabel l : gameLabels) {
+            gameWindow.add(l.getLabel());
+        }
+
+        quitGame.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+
+        });
+
+        gameWindow.setVisible(true);
+    }
+
+    // For resetter class
+    public JButton getResetGame() {
+        return resetGame;
+    }
+
+    // For resetter class and win condition
+    public ArrayList<GameLabel> getGameLabels() {
+        return gameLabels;
     }
 
     public int getCurrentPlayer() {
