@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
     /**
      * The window for the game. Here is where all the visuals are.
+     * As this is mostly for visuals and has only a few functions that other classes use, there can not be too many tests.
      * @author Luca
      */
 public class Window extends JButton {
@@ -158,7 +159,11 @@ public class Window extends JButton {
         return resetGame;
     }
 
-    public int getCurrentPlayer() {
+        public ArrayList<GameLabel> getGameLabels() {
+            return gameLabels;
+        }
+
+        public int getCurrentPlayer() {
         return currentPlayer;
     }
 }
