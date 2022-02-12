@@ -11,6 +11,7 @@ import java.util.ArrayList;
      * As this is mostly for visuals and has only a few functions that other classes use, there can not be too many tests.
      * @author Luca
      */
+
 public class Window extends JButton {
 
 
@@ -40,6 +41,10 @@ public class Window extends JButton {
         final int OFFSET = 50;
         final int DEF_SIZE = 100;
 
+        /**
+         * Run in GameLabel whenever you put down a piece. This is how we find out whose turn it is.
+         */
+
         public void alternatePlayer() {
             if (currentPlayer == 1) {
                 currentPlayer = 2;
@@ -50,11 +55,14 @@ public class Window extends JButton {
 
         private ArrayList<GameLabel> gameLabels;
 
+        /**
+         * Building the window and all of its components.
+         */
         public Window() {
 
             // Window size is 540x580;
             gameWindow.setUndecorated(true);
-            gameWindow.getRootPane().setWindowDecorationStyle(JRootPane.INFORMATION_DIALOG);
+
 
             gameWindow.setResizable(false);
             gameWindow.setLayout(null);
@@ -151,6 +159,10 @@ public class Window extends JButton {
                 gameWindow.add(l.getLabel());
             }
 
+            /**
+             * Quit button.
+            */
+
             quitGame.addActionListener(new ActionListener() {
 
                 @Override
@@ -160,6 +172,10 @@ public class Window extends JButton {
 
             });
 
+            /**
+             * Reset
+             */
+
             resetBoardButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -168,6 +184,10 @@ public class Window extends JButton {
             });
             gameWindow.setVisible(true);
         }
+
+        /**
+         * Updates the score counter and sets the score to the appropriate label.
+         */
 
         public void setScore(int player, int playerScore) {
             if (player == 1) {
@@ -186,15 +206,27 @@ public class Window extends JButton {
             return gameLabels;
         }
 
+        public JLabel getPlayer1Score() {
+            return player1Score;
+        }
+
         public int getCurrentPlayer() {
             return currentPlayer;
         }
+
+        /**
+         * Combined with reset board this will reset the entire game.
+         */
 
         public void resetPlayers() {
             player1.setPlayerScore(0);
             player2.setPlayerScore(0);
             currentPlayer = 1;
         }
+
+        /**
+         * Gets all GameLabels and resets them. Also puts the turn to player 1.
+         */
 
         public void resetBoard() {
             for (GameLabel g : gameLabels){
