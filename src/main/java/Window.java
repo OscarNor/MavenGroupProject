@@ -135,8 +135,8 @@ public class Window extends JButton {
         gameWindow.add(resetGame);
         gameWindow.add(quitGame);
 
-        Player player1 = new Player(this);
-        Player player2 = new Player(this);
+        Player player1 = new Player(1, this);
+        Player player2 = new Player(2, this);
 
         for (GameLabel l : gameLabels) {
             gameWindow.add(l.getLabel());
