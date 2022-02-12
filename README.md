@@ -12,3 +12,5 @@ Commando: cd MavenGroupProject
 Commando: mvn package test
 Commando: java -cp target/MavenGroupProject-1.0-SNAPSHOT.jar App
 
+
+
