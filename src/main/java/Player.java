@@ -19,5 +19,10 @@ public class Player {
         this.playerScore = playerScore;
     }
 
+    public int getPlayerNumber()
+    {
+        return playerNumber;
+    }
+
     // 5
 }
