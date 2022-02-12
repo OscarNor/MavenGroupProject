@@ -31,6 +31,7 @@ public class Window extends JButton {
         JLabel player2Score = new JLabel("0");
         JButton resetGame = new JButton("Restart");
         JButton quitGame = new JButton("Exit");
+        JButton resetBoardButton = new JButton("Reset Board");
 
         Font defaultFont = new Font("Calibri", Font.BOLD, 30);
         Font defaultScoreFont = new Font("Calibri", Font.BOLD, 54);
@@ -91,9 +92,13 @@ public class Window extends JButton {
             resetGame.setForeground(Color.BLACK);
             resetGame.setFont(defaultFont);
 
-            quitGame.setBounds(282 - 65, 548 - 25, 130, 50);
+            quitGame.setBounds(280 - 65, 548 - 25, 130, 50);
             quitGame.setForeground(Color.BLACK);
             quitGame.setFont(defaultFont);
+
+            resetBoardButton.setBounds(425 - 75, 548 - 25, 190, 50);
+            resetBoardButton.setForeground(Color.BLACK);
+            resetBoardButton.setFont(defaultFont);
 
             player1 = new Player(1, this);
             player2 = new Player(2, this);
@@ -140,6 +145,7 @@ public class Window extends JButton {
             gameWindow.add(player2Score);
             gameWindow.add(resetGame);
             gameWindow.add(quitGame);
+            gameWindow.add(resetBoardButton);
 
             for (GameLabel l : gameLabels) {
                 gameWindow.add(l.getLabel());
@@ -154,6 +160,12 @@ public class Window extends JButton {
 
             });
 
+            resetBoardButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    resetBoard();
+                }
+            });
             gameWindow.setVisible(true);
         }
 
