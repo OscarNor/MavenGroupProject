@@ -11,7 +11,7 @@ public class GameLabelTest {
     Window w = new Window();
     Player one = new Player(1,w);
     Player two = new Player(2,w);
-    WinCondition wc = new WinCondition(one, two);
+    WinCondition wc = new WinCondition(one, two, new Resetter(w));
 
     @Test
     public void testOnlyAllowedClickedOnce() {

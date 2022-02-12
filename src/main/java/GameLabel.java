@@ -65,11 +65,11 @@ public class GameLabel {
         int player = window.getCurrentPlayer();
         if (labelValue == 0) {
             if (player == 1) {
-                labelValue = 1;
                 label.setIcon(cross);
+                labelValue = 1;
             } else if (player == 2) {
-                labelValue = 2;
                 label.setIcon(ring);
+                labelValue = 2;
             }
             window.alternatePlayer();
             winCondition.checkGameWon(1,2);

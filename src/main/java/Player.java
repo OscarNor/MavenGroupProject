@@ -1,8 +1,9 @@
-public class Player {
+/**
+ * Used for holding the score. Two ints that describe score and player number. Player 1 starts.
+ * @author Hampus
+ */
 
-    /**
-    * Used for holding the score. Two ints that describe score and player number. Player 1 starts.
-     */
+public class Player {
 
     private int playerNumber;
     private Window window;

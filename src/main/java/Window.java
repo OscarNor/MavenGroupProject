@@ -181,11 +181,13 @@ public class Window extends JButton {
         public void resetPlayers() {
             player1.setPlayerScore(0);
             player2.setPlayerScore(0);
+            currentPlayer = 1;
         }
 
         public void resetBoard() {
             for (GameLabel g : gameLabels){
                 g.resetGameLabel();
             }
+            currentPlayer = 1;
         }
     }
