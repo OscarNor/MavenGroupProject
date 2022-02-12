@@ -25,12 +25,10 @@ public class WinCondition {
         //Should reset the board on player win
     public void checkGameWon(int p1, int p2){
         if (checkPlayerWin(1) == 1) {
-            System.out.println("p1 won");
             player1.setPlayerScore(player1.getPlayerScore() + 1);
             rs.reset();
         }
         else if (checkPlayerWin(2) == 2) {
-            System.out.println("p2 won");
             player2.setPlayerScore(player2.getPlayerScore() + 1);
             rs.reset();
         }
