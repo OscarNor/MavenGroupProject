@@ -14,6 +14,7 @@ public class GameLabel {
 
     ImageIcon ring = new ImageIcon("bin/ring.gif");
     ImageIcon cross = new ImageIcon("bin/cross.png");
+    ImageIcon empty = new ImageIcon();
 
     int labelValue = 0;
     JLabel label = new JLabel();
@@ -58,7 +59,7 @@ public class GameLabel {
 
 
         /**
-         * Checks current player turn and sets the selected postition and adds players icon on that postition
+         * Checks current player turn and sets the selected position and adds players icon on that position
          */
     public void select() {
         int player = window.getCurrentPlayer();
@@ -71,7 +72,7 @@ public class GameLabel {
                 label.setIcon(ring);
             }
             window.alternatePlayer();
-            winCondition.checkGameWon(1, 2);
+            winCondition.checkGameWon(1,2);
         } // else dont do anything
     }
 
@@ -88,4 +89,9 @@ public class GameLabel {
     public JLabel getLabel() {
         return label;
     }
-}
+
+        public void resetGameLabel() {
+            this.labelValue = 0;
+            label.setIcon(empty);
+        }
+    }
