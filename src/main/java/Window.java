@@ -135,8 +135,8 @@ public class Window extends JButton {
         gameWindow.add(resetGame);
         gameWindow.add(quitGame);
 
-        Player player1 = new Player();
-        Player player2 = new Player();
+        Player player1 = new Player(this);
+        Player player2 = new Player(this);
 
         for (GameLabel l : gameLabels) {
             gameWindow.add(l.getLabel());
@@ -154,6 +154,13 @@ public class Window extends JButton {
         gameWindow.setVisible(true);
     }
 
+    public void setScore(int player, int playerScore){
+        if (player == 1){
+            player1Score.setText(String.valueOf(playerScore));
+        } else{
+            player2Score.setText(String.valueOf(playerScore));
+        }
+    }
     // For resetter class
     public JButton getResetGame() {
         return resetGame;
