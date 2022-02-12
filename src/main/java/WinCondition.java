@@ -6,6 +6,9 @@ import java.util.List;
     */
 public class WinCondition {
 
+    int p1Score;
+    int p2Score;
+
     static ArrayList<GameLabel> list;
 
     //Returns 1 if p1 is winner, 2 if p2 is winner and 0 if no one has won
@@ -14,10 +17,13 @@ public class WinCondition {
             System.out.println(g.getLabelValue());
         }
         System.out.println("-");
-        if (checkPlayerWin(p1) == p1)
+        if (checkPlayerWin(p1) == p1) {
             System.out.println("p1 won");
+            p1Score ++;
+        }
         else if (checkPlayerWin(p2) == p2) {
             System.out.println("p2 won");
+            p2Score ++;
         }
     }
 
@@ -51,5 +57,12 @@ public class WinCondition {
             this.list = list;
         }
 
-        // 3
+        public int getP1Score() {
+            return p1Score;
+        }
+
+        public int getP2Score() {
+            return p2Score;
+        }
+// 3
 }
