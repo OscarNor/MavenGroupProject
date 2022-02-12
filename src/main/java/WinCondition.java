@@ -19,11 +19,11 @@ public class WinCondition {
         System.out.println("-");
         if (checkPlayerWin(p1.getPlayerNumber()) == p1.getPlayerNumber()) {
             System.out.println("p1 won");
-            p1Score ++;
+            p1.setPlayerScore(p1.getPlayerScore() + 1);
         }
         else if (checkPlayerWin(p2.getPlayerNumber()) == p2.getPlayerNumber()) {
             System.out.println("p2 won");
-            p2Score ++;
+            p2.setPlayerScore(p2.getPlayerScore() + 1);
         }
     }
 
