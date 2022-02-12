@@ -1,4 +1,5 @@
-import org.junit.Assert;
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ public class WindowTest {
 
     @Test
     void testList(){
-        Assert.assertEquals(9, window.getGameLabels().size());
+        assertEquals(9, window.getGameLabels().size());
     }
 
     @Test
@@ -20,8 +21,9 @@ public class WindowTest {
             JButton testButton = window.getResetGame();
         }
         catch (Exception e){
-            Assert.fail("Could not get button");
+            fail("Could not get button");
         }
     }
 
 }
+
