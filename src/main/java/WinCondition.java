@@ -12,16 +12,16 @@ public class WinCondition {
     static ArrayList<GameLabel> list;
 
     //Returns 1 if p1 is winner, 2 if p2 is winner and 0 if no one has won
-    public void checkGameWon(int p1, int p2){
+    public void checkGameWon(Player p1, Player p2){
         for (GameLabel g : list){
             System.out.println(g.getLabelValue());
         }
         System.out.println("-");
-        if (checkPlayerWin(p1) == p1) {
+        if (checkPlayerWin(p1.getPlayerNumber()) == p1.getPlayerNumber()) {
             System.out.println("p1 won");
             p1Score ++;
         }
-        else if (checkPlayerWin(p2) == p2) {
+        else if (checkPlayerWin(p2.getPlayerNumber()) == p2.getPlayerNumber()) {
             System.out.println("p2 won");
             p2Score ++;
         }
@@ -61,8 +61,5 @@ public class WinCondition {
             return p1Score;
         }
 
-        public int getP2Score() {
-            return p2Score;
-        }
-// 3
+        // 3
 }
