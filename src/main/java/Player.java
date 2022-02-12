@@ -24,5 +24,8 @@ public class Player {
         return playerNumber;
     }
 
-    // 5
+    public int getPlayerScore() {
+        return playerScore;
+    }
+// 5
 }
