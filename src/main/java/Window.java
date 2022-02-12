@@ -61,8 +61,6 @@ public class Window extends JButton {
         public Window() {
 
             // Window size is 540x580;
-            gameWindow.setUndecorated(true);
-
 
             gameWindow.setResizable(false);
             gameWindow.setLayout(null);
