@@ -8,27 +8,39 @@ public class WinCondition {
 
     private Player player1;
     private Player player2;
+    private Resetter rs;
 
-    public WinCondition(Player player1, Player player2){
+    public WinCondition(Player player1, Player player2, Resetter rs){
         this.player1 = player1;
         this.player2 = player2;
+        this.rs = rs;
     }
 
     static ArrayList<GameLabel> list;
 
+
+
     //Returns 1 if p1 is winner, 2 if p2 is winner and 0 if no one has won
+        //TODO
+        //Should reset the board on player win
     public void checkGameWon(int p1, int p2){
-        for (GameLabel g : list){
-            System.out.println(g.getLabelValue());
-        }
-        System.out.println("-");
         if (checkPlayerWin(1) == 1) {
             System.out.println("p1 won");
             player1.setPlayerScore(player1.getPlayerScore() + 1);
+            try {
+                Thread.sleep(3000);
+            }
+            catch(Exception e){}
+            rs.reset();
         }
         else if (checkPlayerWin(2) == 2) {
             System.out.println("p2 won");
             player2.setPlayerScore(player2.getPlayerScore() + 1);
+            try {
+                Thread.sleep(3000);
+            }
+            catch(Exception e){}
+            rs.reset();
         }
     }
 
