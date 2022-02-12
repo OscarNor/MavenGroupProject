@@ -9,15 +9,17 @@ import java.util.Arrays;
 
 public class GameLabelTest {
     Window w = new Window();
-    WinCondition wc = new WinCondition();
+    Player one = new Player(1,w);
+    Player two = new Player(2,w);
+    WinCondition wc = new WinCondition(one, two);
 
     @Test
     public void testOnlyAllowedClickedOnce() {
         GameLabel gl = new GameLabel(1, w, wc );
         assertEquals(0, gl.labelValue);
-        gl.select();
+        gl.select(); //player 1
         assertEquals(1, gl.labelValue);
-        gl.select();
+        gl.select(); // player 2
         assertEquals(1, gl.labelValue);
     }
 
@@ -46,7 +48,7 @@ public class GameLabelTest {
 
         System.out.println(WinCondition.checkPlayerWin(2));
         System.out.println(WinCondition.checkPlayerWin(1));
-        assertEquals(2, WinCondition.checkPlayerWin(2));
+        assertEquals(2, WinCondition.checkPlayerWin(2)); //player two win
     }
 
     @Test
@@ -54,8 +56,8 @@ public class GameLabelTest {
         ImageIcon ring = new ImageIcon("bin/ring.gif");
         ImageIcon cross = new ImageIcon("bin/cross.png");
 
-        assertNotNull(ring, "bin/ring.gif");
-        assertNotNull(cross, "bin/cross.png");
+        assertNotNull(ring);
+        assertNotNull(cross);
     }
 
     @Test
