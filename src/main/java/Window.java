@@ -97,8 +97,9 @@ public class Window extends JButton {
 
             player1 = new Player(1, this);
             player2 = new Player(2, this);
+            Resetter reset = new Resetter(this);
+            WinCondition condition = new WinCondition(player1, player2, reset);
 
-            WinCondition condition = new WinCondition(player1, player2);
 
             GameLabel square1 = new GameLabel(1, this, condition);
             GameLabel square2 = new GameLabel(2, this, condition);
