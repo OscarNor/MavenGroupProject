@@ -6,24 +6,29 @@ import java.util.List;
     */
 public class WinCondition {
 
-    int p1Score;
-    int p2Score;
+    private Player player1;
+    private Player player2;
+
+    public WinCondition(Player player1, Player player2){
+        this.player1 = player1;
+        this.player2 = player2;
+    }
 
     static ArrayList<GameLabel> list;
 
     //Returns 1 if p1 is winner, 2 if p2 is winner and 0 if no one has won
-    public void checkGameWon(Player p1, Player p2){
+    public void checkGameWon(int p1, int p2){
         for (GameLabel g : list){
             System.out.println(g.getLabelValue());
         }
         System.out.println("-");
-        if (checkPlayerWin(p1.getPlayerNumber()) == p1.getPlayerNumber()) {
+        if (checkPlayerWin(1) == 1) {
             System.out.println("p1 won");
-            p1.setPlayerScore(p1.getPlayerScore() + 1);
+            player1.setPlayerScore(player1.getPlayerScore() + 1);
         }
-        else if (checkPlayerWin(p2.getPlayerNumber()) == p2.getPlayerNumber()) {
+        else if (checkPlayerWin(2) == 2) {
             System.out.println("p2 won");
-            p2.setPlayerScore(p2.getPlayerScore() + 1);
+            player2.setPlayerScore(player2.getPlayerScore() + 1);
         }
     }
 
@@ -55,10 +60,6 @@ public class WinCondition {
 
         public void setList(ArrayList<GameLabel> list) {
             this.list = list;
-        }
-
-        public int getP1Score() {
-            return p1Score;
         }
 
         // 3

@@ -5,18 +5,20 @@ public class Player {
      */
 
     private int playerNumber;
-
+    private Window window;
     private int playerScore;
 
     public Player(int player, Window window)
     {
         this.playerNumber = player;
         this.playerScore = 0;
+        this.window = window;
     }
 
     public void setPlayerScore(int playerScore)
     {
         this.playerScore = playerScore;
+        window.setScore(playerNumber, playerScore);
     }
 
     public int getPlayerNumber()

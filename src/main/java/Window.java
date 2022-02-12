@@ -93,7 +93,10 @@ public class Window extends JButton {
         quitGame.setForeground(Color.BLACK);
         quitGame.setFont(defaultFont);
 
-        WinCondition condition = new WinCondition();
+        Player player1 = new Player(1,this);
+        Player player2 = new Player(2,this);
+
+        WinCondition condition = new WinCondition(player1, player2);
 
         GameLabel square1 = new GameLabel(1,this, condition);
         GameLabel square2 = new GameLabel(2,this, condition);
@@ -135,9 +138,6 @@ public class Window extends JButton {
         gameWindow.add(resetGame);
         gameWindow.add(quitGame);
 
-        Player player1 = new Player(1,this);
-        Player player2 = new Player(2,this);
-
         for (GameLabel l : gameLabels) {
             gameWindow.add(l.getLabel());
         }
@@ -161,6 +161,7 @@ public class Window extends JButton {
             player2Score.setText(String.valueOf(playerScore));
         }
     }
+
     // For resetter class
     public JButton getResetGame() {
         return resetGame;
