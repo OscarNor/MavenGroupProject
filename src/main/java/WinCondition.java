@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
     /**
-    * Checks if a player has won the game. If the board is full, it's a tie. Calls for a reset.
+     * Used to check if there is a winner
+     * If there is a winner, the board is reset and next round begins.
      * @author Anton
     */
 public class WinCondition {
@@ -10,6 +11,12 @@ public class WinCondition {
     private Player player2;
     private Resetter rs;
 
+        /**
+         * Creates instance of Wincondition
+         * @param player1 the first player (1) that is in the game
+         * @param player2 the second player (2) that is in the game
+         * @param rs the resetter used to reset the board after one round has been played
+         */
     public WinCondition(Player player1, Player player2, Resetter rs){
         this.player1 = player1;
         this.player2 = player2;
@@ -18,11 +25,12 @@ public class WinCondition {
 
     static ArrayList<GameLabel> list;
 
-
-
-    //Returns 1 if p1 is winner, 2 if p2 is winner and 0 if no one has won
-        //TODO
-        //Should reset the board on player win
+        /**
+         * Checks if there is a winner, gives the winning player a point and resets the board
+         * This does nothing if there is no winner yet
+         * @param p1 Player 1:s player number
+         * @param p2 Player 2:s player number
+         */
     public void checkGameWon(int p1, int p2){
         if (checkPlayerWin(1) == 1) {
             player1.setPlayerScore(player1.getPlayerScore() + 1);
@@ -34,11 +42,25 @@ public class WinCondition {
         }
     }
 
+        /**
+         * Checks if a player has marked 3 positions on the tictactoe-board
+         * @param player The players player number
+         * @param a The first position to check
+         * @param b The second position to check
+         * @param c The third position to check
+         * @return True if the player holds all positions in arguments, returns false if not.
+         */
     private static boolean check3Positions(int player, int a, int b, int c){
         return list.get(a).getLabelValue() == player && list.get(b).getLabelValue() == player && list.get(c).getLabelValue() == player;
     }
 
     // Return 0 if no winner, returns player value if player has won EG: player1 = 1 will return 1 if the player has three in a row
+
+        /**
+         * Checks if a player has won the round
+         * @param player The players player number
+         * @return The players number if the player has won, 0 if the player has not won
+         */
     public static int checkPlayerWin(int player){
         if (check3Positions(player, 0,1 ,2))
             return player;
@@ -60,6 +82,10 @@ public class WinCondition {
             return 0;
     }
 
+        /**
+         * Sets WinCondition.list to specified list
+         * @param list The list you want to set Wincondition.list to
+         */
         public void setList(ArrayList<GameLabel> list) {
             this.list = list;
         }
