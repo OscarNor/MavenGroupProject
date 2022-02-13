@@ -1,8 +1,13 @@
 # MavenGroupProject
+**Tic Tac Toe**
+
+**Made by: Grupp 5**
+
+***Anton, Hampus, Luca, and Oscar***
 
 Usage
-
-In terminal: 
+-
+**In terminal:**
 
 Clone repo to a folder you want the game to be
 

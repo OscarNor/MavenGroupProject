@@ -9,6 +9,11 @@ public class Player {
     private Window window;
     private int playerScore;
 
+    /**
+     * Just creates a player
+     * @param player the number for the player
+     * @param window the game window
+     */
     public Player(int player, Window window)
     {
         this.playerNumber = player;
@@ -16,6 +21,11 @@ public class Player {
         this.window = window;
     }
 
+    /**
+     * Sets the score for this player and sends it to window to be visually displayed
+     * Called from win condition
+     * @param playerScore gets the score sent to set it
+     */
     public void setPlayerScore(int playerScore)
     {
         this.playerScore = playerScore;

@@ -10,6 +10,7 @@ import java.util.ArrayList;
      * The window for the game. Here is where all the visuals are.
      * As this is mostly for visuals and has only a few functions that other classes use, there can not be too many tests.
      * @author Luca
+     *
      */
 
 public class Window extends JButton {
@@ -19,7 +20,6 @@ public class Window extends JButton {
         JFrame gameWindow = new JFrame();
         ImageIcon icon = new ImageIcon("treiradboard.png");
 
-        ImageIcon t = new ImageIcon("testimg.png");
         JLabel board = new JLabel(icon);
 
         JLabel player1Name = new JLabel("Player X");
@@ -41,6 +41,7 @@ public class Window extends JButton {
         final int OFFSET = 50;
         final int DEF_SIZE = 100;
 
+        Resetter resetter;
         /**
          * Run in GameLabel whenever you put down a piece. This is how we find out whose turn it is.
          */
@@ -108,8 +109,8 @@ public class Window extends JButton {
 
             player1 = new Player(1, this);
             player2 = new Player(2, this);
-            Resetter reset = new Resetter(this);
-            WinCondition condition = new WinCondition(player1, player2, reset);
+            resetter = new Resetter(this);
+            WinCondition condition = new WinCondition(player1, player2, resetter);
 
 
             GameLabel square1 = new GameLabel(1, this, condition);
@@ -160,7 +161,6 @@ public class Window extends JButton {
             /**
              * Quit button.
             */
-
             quitGame.addActionListener(new ActionListener() {
 
                 @Override
@@ -173,7 +173,6 @@ public class Window extends JButton {
             /**
              * Reset
              */
-
             resetBoardButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -185,6 +184,8 @@ public class Window extends JButton {
 
         /**
          * Updates the score counter and sets the score to the appropriate label.
+         * @param player this determines whose score to set
+         * @param playerScore what it should be set to
          */
 
         public void setScore(int player, int playerScore) {
@@ -200,6 +201,9 @@ public class Window extends JButton {
             return resetGame;
         }
 
+        /**
+         * @return the arraylist of gamelabels
+         */
         public ArrayList<GameLabel> getGameLabels() {
             return gameLabels;
         }
@@ -231,5 +235,20 @@ public class Window extends JButton {
                 g.resetGameLabel();
             }
             currentPlayer = 1;
+        }
+
+         // All below for JUnit
+
+
+        public Resetter getResetter() {
+            return resetter;
+        }
+
+        public Player getPlayer1() {
+            return player1;
+        }
+
+        public Player getPlayer2() {
+            return player2;
         }
     }
