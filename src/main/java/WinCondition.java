@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
     /**
      * Used to check if there is a winner
      * If there is a winner, the board is reset and next round begins.
@@ -53,8 +52,6 @@ public class WinCondition {
     private static boolean check3Positions(int player, int a, int b, int c){
         return list.get(a).getLabelValue() == player && list.get(b).getLabelValue() == player && list.get(c).getLabelValue() == player;
     }
-
-    // Return 0 if no winner, returns player value if player has won EG: player1 = 1 will return 1 if the player has three in a row
 
         /**
          * Checks if a player has won the round
