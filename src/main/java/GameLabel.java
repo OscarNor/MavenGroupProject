@@ -94,4 +94,8 @@ public class GameLabel {
             this.labelValue = 0;
             label.setIcon(empty);
         }
+
+        public void setLabelValue(int labelValue) {
+            this.labelValue = labelValue;
+        }
     }
