@@ -2,6 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * This is a test class for WinCondition.java
+ * @author Anton
+ */
 
 public class WinConditionTest {
 
@@ -23,7 +27,6 @@ public class WinConditionTest {
         assertEquals(0, cond.checkPlayerWin(p1.getPlayerNumber()));
         assertNotEquals(p1.getPlayerNumber(), cond.checkPlayerWin(p1.getPlayerNumber()));
 
-        //int a = WinCondition.list.get(1).labelValue;
     }
 
     @Test
@@ -50,7 +53,7 @@ public class WinConditionTest {
     }
 
     @Test
-    public void checkGameWonTest(){
+    public void checkGameWonNoWinner(){
         cond.setList(w.getGameLabels());
 
         cond.checkGameWon(p1.getPlayerNumber(),p2.getPlayerNumber());
@@ -59,8 +62,47 @@ public class WinConditionTest {
         assertEquals(0, p2.getPlayerScore());
         assertEquals(p1.getPlayerScore(), p2.getPlayerScore());
 
+    }
 
+    @Test
+    public void checkGameWonP1Winner(){
+        p1.setPlayerScore(0);
+        p2.setPlayerScore(0);
+        cond.setList(w.getGameLabels());
 
+        WinCondition.list.get(0).setLabelValue(1);
+        WinCondition.list.get(1).setLabelValue(1);
+        WinCondition.list.get(2).setLabelValue(1);
+
+        int temp1 = p1.getPlayerScore();
+        int temp2 = p2.getPlayerScore();
+
+        cond.checkGameWon(p1.getPlayerNumber(),p2.getPlayerNumber());
+
+        assertEquals(temp1 + 1, p1.getPlayerScore());
+        assertEquals(temp2, p2.getPlayerScore());
+        assertNotEquals(p1.getPlayerScore(), p2.getPlayerScore());
+
+    }
+
+    @Test
+    public void checkGameWonP2Winner(){
+        p1.setPlayerScore(0);
+        p2.setPlayerScore(0);
+        cond.setList(w.getGameLabels());
+
+        WinCondition.list.get(0).setLabelValue(2);
+        WinCondition.list.get(1).setLabelValue(2);
+        WinCondition.list.get(2).setLabelValue(2);
+
+        int temp1 = p1.getPlayerScore();
+        int temp2 = p2.getPlayerScore();
+
+        cond.checkGameWon(p1.getPlayerNumber(),p2.getPlayerNumber());
+
+        assertEquals(temp2 + 1, p2.getPlayerScore());
+        assertEquals(temp1, p1.getPlayerScore());
+        assertNotEquals(p2.getPlayerScore(), p1.getPlayerScore());
 
     }
 }
